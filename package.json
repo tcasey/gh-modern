@@ -1,0 +1,61 @@
+{
+  "name": "gh-modern",
+  "version": "0.1.0",
+  "private": false,
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-standard-jsx": "^5.0.0",
+    "eslint-config-standard-react": "^6.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest-expo": "26.0.0",
+    "react-native-debugger-open": "^0.3.17",
+    "react-native-scripts": "1.13.1",
+    "react-test-renderer": "16.3.0-alpha.1",
+    "redux-devtools-extension": "^2.13.2"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
+  "scripts": {
+    "start": "react-native-scripts start",
+    "local": "REACT_NATIVE_ENV=local react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "jest",
+    "publish": "REACT_NATIVE_ENV=production exp publish",
+    "publish:stage": "REACT_NATIVE_ENV=staging exp publish",
+    "postinstall": "rndebugger-open"
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@app/config": "file:config",
+    "@vivintsolar-oss/native-vs-app-link": "^1.0.2",
+    "@vivintsolar-oss/native-vs-icons": "^1.2.2",
+    "@vivintsolar-oss/native-vs-list": "^1.0.2",
+    "@vivintsolar-oss/native-vs-touchable": "^1.2.2",
+    "apollo": "^0.2.2",
+    "apollo-cache-inmemory": "^1.1.12",
+    "apollo-client": "^2.2.8",
+    "apollo-link": "^1.2.1",
+    "apollo-link-context": "^1.0.7",
+    "apollo-link-error": "^1.0.7",
+    "apollo-link-http": "^1.5.3",
+    "axios": "^0.18.0",
+    "expo": "^26.0.0",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
+    "lodash.get": "^4.4.2",
+    "react": "16.3.0-alpha.1",
+    "react-apollo": "^2.1.2",
+    "react-native": "0.54.0",
+    "react-native-markdown-view": "^1.1.4",
+    "react-native-simple-markdown": "^1.1.0",
+    "react-navigation": "^2.0.0-rc.2"
+  }
+}

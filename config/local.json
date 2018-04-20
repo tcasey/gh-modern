@@ -1,0 +1,12 @@
+{
+  "app": {
+    "host": "exp://localhost:19000",
+    "storageKey": "accessToken"
+  },
+  "github": {
+    "authUrl": "https://github.com/login/oauth/access_token",
+    "redirectUri": "exp://localhost:19000",
+    "clientSecret": "8c13558e2ae892ffd8d9005b226f9dfd037838fb",
+    "clientId": "d689ac5b6e91b2c4206f"
+  }
+}

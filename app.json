@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "sdkVersion": "26.0.0",
+    "orientation": "portrait",
+    "version": "1.0.0",
+    "name": "GH Modern",
+    "scheme": "ghModern",
+    "slug": "ghmodern",
+    "privacy": "public",
+    "description": "A modern GitHub mobile client. 🙂",
+    "primaryColor": "#F7C59F"
+  },
+  "assetBundlePatterns": [],
+  "ios": {
+    "bundleIdentifier": "com.tcasey.ghmodern",
+    "splash": {
+      "backgroundColor": "#F7C59F",
+      "resizeMode": "cover"
+    }
+  },
+  "android": {
+    "package": "com.tcasey.ghmodern",
+    "splash": {
+      "backgroundColor": "#F7C59F",
+      "resizeMode": "cover"
+    }
+  }
+}
