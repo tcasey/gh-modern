@@ -29,15 +29,20 @@ export async function ghToken (code, redirectUri) {
   const tokenParam = await parsedToken.filter(param => {
     return param.includes('access_token')
   })
-  const token = tokenParam[0].split('=')[1]
 
-  return secureSet('access_token', token)
+  if (tokenParam.length) {
+    const token = tokenParam[0].split('=')[1]
+
+    return secureSet('access_token', token)
+  }
+
+  throw new Error('User canceled')
 }
 
 export async function ghAuthorize () {
   const code = await ghCode()
 
-  return ghToken(code, redirectUri)
+  return ghToken(code, github.redirectUri)
 }
 
 export async function logout () {
