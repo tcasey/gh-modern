@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, ScrollView } from 'react-native'
+import { Text, ScrollView, RefreshControl } from 'react-native'
 import { withNavigation } from 'react-navigation'
 import { Query } from 'react-apollo'
 import get from 'lodash.get'
@@ -7,7 +7,7 @@ import followers from '../followers.query'
 import Loading from '../../../common/Loading'
 import UserList from '../../../common/UserList'
 
-function propsToVariables (props) {
+function propsToVariables(props) {
   const last = get(props, 'navigation.state.params.followers')
   const login = get(props, 'navigation.state.params.login')
 
@@ -17,7 +17,7 @@ function propsToVariables (props) {
   }
 }
 
-function skipQuery (props) {
+function skipQuery(props) {
   const last = get(props, 'navigation.state.params.followers')
   const login = get(props, 'navigation.state.params.login')
 
@@ -25,12 +25,22 @@ function skipQuery (props) {
 }
 
 class Followers extends Component {
-  static navigationOptions () {
+  static navigationOptions() {
     return {
       title: 'Followers'
     }
   }
-  render () {
+  state = {
+    refreshing: false
+  }
+  onRefresh = () => {
+    if (this.state.refreshing) {
+      return
+    }
+
+    this.setState({ refreshing: true })
+  }
+  render() {
     const { navigation } = this.props
 
     return (
@@ -39,17 +49,30 @@ class Followers extends Component {
         variables={propsToVariables(this.props)}
         skip={skipQuery(this.props)}
       >
-        {({ loading, error, data }) => {
+        {({ loading, error, data, refetch }) => {
+          const { refreshing } = this.state
           const followers = get(data, 'user.followers.nodes')
 
           if (loading) return <Loading />
           if (error) return <Text>Error :(</Text>
+          if (refreshing) {
+            refetch().then(() => {
+              this.setState({ refreshing: false })
+            })
+          }
 
           return (
-            <ScrollView>
+            <ScrollView
+              refreshControl={
+                <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this.onRefresh}
+                />
+              }
+            >
               <UserList
                 data={followers}
-                type='followers'
+                type="followers"
                 navigation={navigation}
               />
             </ScrollView>
