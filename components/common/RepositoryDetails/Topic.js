@@ -13,11 +13,11 @@ export default function Topic (props) {
         return (
           <View key={i} style={styles.topicWrapper}>
             <Touchable
-            // onPress={() => {
-            //   props.navigation.navigate('Search', {
-            //     search: topic
-            //   })
-            // }}
+              onPress={() => {
+                props.navigation.navigate('Search', {
+                  search: topic
+                })
+              }}
             >
               <Text style={styles.topicText}>{topic}</Text>
             </Touchable>
