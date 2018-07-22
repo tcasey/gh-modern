@@ -1,38 +1,44 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { StyleSheet, Text } from 'react-native'
-import VSTouchable from '@vivintsolar-oss/native-vs-touchable'
+
 import { Color } from '../../../constants'
+import PropTypes from 'prop-types'
+import VSTouchable from '@vivintsolar-oss/native-vs-touchable'
 
 export default class CustomButton extends Component {
   render () {
     const containerStyles = [styles.button]
-    const { style, outline, text } = this.props
+    const { style, text, type } = this.props
 
     if (style) {
       containerStyles.push(style)
     }
 
-    if (outline) {
+    if (type === 'outline') {
       return (
         <VSTouchable style={styles.outlineButton} {...this.props}>
-          <Text style={styles.outlineButtonText}>{text || 'CLICK ME'}</Text>
+          <Text style={styles.outlineButtonText}>{text}</Text>
         </VSTouchable>
       )
     }
 
     return (
       <VSTouchable style={containerStyles} {...this.props}>
-        <Text style={styles.buttonText}>{text || 'CLICK ME'}</Text>
+        <Text style={styles.buttonText}>{text}</Text>
       </VSTouchable>
     )
   }
 }
+
+CustomButton.defaultProps = {
+  text: 'CLICK ME'
+}
+
 CustomButton.propTypes = {
   text: PropTypes.string,
   width: PropTypes.string,
   style: PropTypes.object,
-  outline: PropTypes.bool
+  type: PropTypes.string
 }
 
 const styles = StyleSheet.create({
