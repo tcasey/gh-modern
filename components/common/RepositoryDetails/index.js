@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, Linking } from 'react-native'
+import { Linking, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import get from 'lodash.get'
-import Markdown from 'react-native-simple-markdown'
+import Markdown from 'react-native-markdown-renderer'
 import Touchable from '@vivintsolar-oss/native-vs-touchable'
 import MetricLabel from '../MetricLabel'
-import Section from './Section'
 import Topic from './Topic'
-import styles from './style'
+import styles, { markdownStyles } from './style'
+import { Layout } from '../../../constants'
 
 export default class RepositoryDetails extends Component {
   navigate (route, param) {
@@ -29,8 +29,9 @@ export default class RepositoryDetails extends Component {
 
     return (
       <View style={styles.container}>
-        <View style={styles.imageWrapper}>
+        <View>
           <Touchable
+            style={styles.ownerWrapper}
             onPress={() => {
               navigation.navigate('OtherProfile', {
                 login: owner,
@@ -40,7 +41,19 @@ export default class RepositoryDetails extends Component {
           >
             <Text style={[styles.bold, styles.owner]}>@{owner}</Text>
           </Touchable>
-          {/* <Text style={[{ color: language.color }]}>{language.name}</Text> */}
+          {/* Programming Language */}
+          <View style={styles.language}>
+            <View
+              style={{
+                height: 16,
+                width: 16,
+                borderRadius: 16,
+                backgroundColor: language.color,
+                marginHorizontal: Layout.ICON_GAP
+              }}
+            />
+            <Text>{language.name}</Text>
+          </View>
           <View style={styles.textContainer}>
             <View style={styles.textWrapper}>
               <Text style={styles.description}>{data.description}</Text>
@@ -83,21 +96,16 @@ export default class RepositoryDetails extends Component {
               <Text style={styles.title}>Topics</Text>
             ) : null}
             <Topic data={repositoryTopics} navigation={this.props.navigation} />
-            <Markdown
-              errorHandler={(errors, children) => console.log(errors, children)}
-              styles={{
-                heading1: {
-                  fontSize: 20,
-                  textAlign: 'center'
-                },
-                strong: {
-                  fontWeight: 'bold',
-                  textAlign: 'center'
+            <View style={styles.markdownWrapper}>
+              <Markdown
+                errorHandler={(errors, children) =>
+                  console.log(errors, children)
                 }
-              }}
-            >
-              {README}
-            </Markdown>
+                style={markdownStyles}
+              >
+                {README}
+              </Markdown>
+            </View>
           </View>
         </View>
       </View>
