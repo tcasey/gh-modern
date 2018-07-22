@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { View, Text } from 'react-native'
+import { Text, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { List, ListItem } from '@vivintsolar-oss/native-vs-list'
 import get from 'lodash.get'
 import styles from './style'
+import { Layout } from '../../../constants'
 
 function label (item) {
   const primaryLanguage = get(item, 'primaryLanguage.name')
@@ -30,9 +31,18 @@ function label (item) {
           <Text style={styles.gap}>{item.forkCount}</Text>
         </View>
         <View style={styles.row}>
-          <Text style={[styles.language, { color: languageColor }]}>
-            {primaryLanguage}
-          </Text>
+          <View style={styles.language}>
+            <View
+              style={{
+                height: 16,
+                width: 16,
+                borderRadius: 16,
+                backgroundColor: languageColor,
+                marginHorizontal: Layout.ICON_GAP
+              }}
+            />
+            <Text>{primaryLanguage}</Text>
+          </View>
         </View>
       </View>
     </View>

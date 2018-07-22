@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { Layout, Color } from '../../../constants'
+import { Color, Layout } from '../../../constants'
 
 const styles = StyleSheet.create({
   itemStyle: {
@@ -32,9 +32,8 @@ const styles = StyleSheet.create({
     color: Color.DEFAULT
   },
   language: {
-    fontSize: Layout.TEXT,
-    color: Color.DEFAULT,
-    paddingLeft: Layout.ICON_GAP * 2
+    flexDirection: 'row',
+    paddingLeft: Layout.ICON_GAP
   }
 })
 
