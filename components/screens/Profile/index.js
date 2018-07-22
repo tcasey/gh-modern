@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, ScrollView } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import Touchable from '@vivintsolar-oss/native-vs-touchable'

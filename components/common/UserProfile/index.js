@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, Linking, Platform, Alert } from 'react-native'
+import { Alert, Image, Linking, Platform, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import get from 'lodash.get'
 import Ionicons from '@expo/vector-icons/Ionicons'
@@ -120,7 +120,9 @@ export default class UserProfile extends Component {
           <View style={styles.textContainer}>
             <View style={styles.textWrapper}>
               <Text style={[styles.bold]}>{user.name}</Text>
-              <Text style={[styles.smallText]}>@{user.login}</Text>
+              <Text style={[styles.smallText, styles.handle]}>
+                @{user.login}
+              </Text>
               <Text style={[styles.bio]}>{user.bio}</Text>
               <View style={styles.bottomLinks}>
                 <MetricLabel

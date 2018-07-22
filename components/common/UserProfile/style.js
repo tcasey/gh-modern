@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
   imageWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: Color.BACKGROUND_ACCENT,
+    // backgroundColor: Color.BACKGROUND_ACCENT,
     // padding: Layout.EDGE_PADDING,
-    height: 120,
+    // height: 120,
     position: 'relative'
   },
   image: {
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: Color.WHITE
   },
   textContainer: {
-    position: 'absolute',
+    // position: 'absolute',
     width: '100%',
     top: 160
   },
@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
   smallText: {
     fontSize: Layout.SPAN,
     textAlign: 'center'
+  },
+  handle: {
+    color: Color.DEFAULT
   },
   lightText: {
     color: Color.DEFAULT,
