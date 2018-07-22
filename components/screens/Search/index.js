@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { ScrollView, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import Touchable from '@vivintsolar-oss/native-vs-touchable'
@@ -80,7 +80,7 @@ export default class Search extends Component {
           {activeTab('Repository', active)}
           {activeTab('User', active)}
         </View>
-        {this.state.query && ( // skip isn't quite working as the loading props still gets passed down
+        {this.state.query ? ( // skip isn't quite working as the loading props still gets passed down
           <Query
             displayName='Search'
             query={query}
@@ -101,6 +101,10 @@ export default class Search extends Component {
               )
             }}
           </Query>
+        ) : (
+          <View style={styles.noDataWrapper}>
+            <Text style={styles.noData}>No Data</Text>
+          </View>
         )}
       </ScrollView>
     )

@@ -25,6 +25,17 @@ const styles = StyleSheet.create({
   unSelected: {
     borderBottomWidth: 4,
     borderBottomColor: 'transparent'
+  },
+  noDataWrapper: {
+    height: Layout.window.height,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: '40%'
+  },
+  noData: {
+    textAlign: 'center',
+    fontSize: Layout.TITLE,
+    color: Color.BLACK
   }
 })
 
