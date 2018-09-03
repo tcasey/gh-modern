@@ -37,18 +37,35 @@ export default class Search extends Component {
 
   constructor (props) {
     super(props)
+    this.handleQueryChange = this.handleQueryChange.bind(this)
     this.state = {
       active: 'Repository'
     }
   }
-  componentDidMount () {
-    // this.props.navigation.setParams({ searchTerm: this.searchTerm })
+  static getDerivedStateFromProps (props, state) {
+    const searchTerm = get(props, 'navigation.state.params.topic', null)
+
+    if (searchTerm) {
+      return { searchTerm }
+    }
+
+    return null
   }
+
   toggleActive (active) {
     this.setState({ active })
   }
+
+  handleQueryChange (searchText) {
+    this.setState({ searchText })
+  }
+
+  componentWillUnmount () {
+    this.setState({ searchTerm: null })
+  }
+
   render () {
-    const { active } = this.state
+    const { active, searchTerm } = this.state
     const query = active === 'Repository' ? searchRepository : searchUser
     const ListComponent = active === 'Repository' ? RepoList : UserList
     const activeTab = (type, active) => {
@@ -67,6 +84,7 @@ export default class Search extends Component {
         </Touchable>
       )
     }
+
     return (
       <SearchLayout
         headerBackgroundColor={Color.WHITE}
@@ -75,19 +93,20 @@ export default class Search extends Component {
         searchInputSelectionColor={Color.BACKGROUND}
         searchInputTextColor={Color.DEFAULT}
         placeholderTextColor={Color.LIGHTER_GRAY}
+        onChangeQuery={this.handleQueryChange}
         renderResults={q => (
           <ScrollView>
             <View style={styles.tabContainer}>
               {activeTab('Repository', active)}
               {activeTab('User', active)}
             </View>
-            {q ? ( // skip isn't quite working as the loading props still gets passed down
+            {q || searchTerm ? ( // skip isn't quite working as the loading props still gets passed down
               <Query
                 displayName='Search'
                 query={query}
                 variables={propsToVariables(this.props, {
                   ...this.state,
-                  query: q
+                  query: searchTerm
                 })}
               >
                 {({ loading, error, data }) => {

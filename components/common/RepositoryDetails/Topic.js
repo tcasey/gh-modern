@@ -14,8 +14,9 @@ export default function Topic (props) {
           <View key={i} style={styles.topicWrapper}>
             <Touchable
               onPress={() => {
-                props.navigation.navigate('Search', {
-                  search: topic
+                props.navigation.navigate({
+                  routeName: 'Search',
+                  params: { topic }
                 })
               }}
             >

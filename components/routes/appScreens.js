@@ -89,7 +89,7 @@ const ProfileStack = createStackNavigator(
 
 const GHModern = createBottomTabNavigator(
   {
-    Home: {
+    HomeRoutes: {
       screen: HomeStack,
       path: '/',
       navigationOptions: {
@@ -100,7 +100,7 @@ const GHModern = createBottomTabNavigator(
           tabIconHelper(tintColor, focused, 'home')
       }
     },
-    Search: {
+    SearchRoutes: {
       screen: SearchStack,
       path: '/search',
       navigationOptions: {
@@ -110,7 +110,7 @@ const GHModern = createBottomTabNavigator(
           tabIconHelper(tintColor, focused, 'search')
       }
     },
-    Profile: {
+    ProfileRoutes: {
       screen: ProfileStack,
       path: '/profile',
       navigationOptions: {
@@ -131,7 +131,7 @@ const GHModern = createBottomTabNavigator(
       }
     },
     tabBarPosition: 'bottom',
-    initialRouteName: 'Profile'
+    initialRouteName: 'ProfileRoutes'
   }
 )
 
