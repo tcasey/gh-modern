@@ -9,11 +9,11 @@ if (console) {
 }
 
 export default class App extends Component {
-  render () {
+  render() {
     return (
       <CatchError>
         <ApolloProvider client={client}>
-          <GHModern />
+          <GHModern uriPrefix="/app" />
         </ApolloProvider>
       </CatchError>
     )

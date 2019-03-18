@@ -3,14 +3,14 @@ import { Text } from 'react-native'
 import { withNavigation } from 'react-navigation'
 
 class Home extends Component {
-  static navigationOptions () {
+  static navigationOptions() {
     return {
-      title: 'Home'
+      title: 'Home',
     }
   }
 
-  render () {
-    return <Text>Home</Text>
+  render() {
+    return <Text />
   }
 }
 

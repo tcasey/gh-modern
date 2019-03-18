@@ -1,9 +1,10 @@
 import React from 'react'
 import {
   createBottomTabNavigator,
-  createStackNavigator
+  createStackNavigator,
 } from 'react-navigation'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { Text } from 'react-native'
+import { AntDesign } from '@expo/vector-icons'
 import Home from '../screens/Home'
 import Search from '../screens/Search'
 import Settings from '../screens/Settings'
@@ -17,26 +18,7 @@ import Following from '../screens/Profile/Following'
 import { Color } from '../../constants'
 
 const tabIconHelper = (tintColor, focused, type) => {
-  return (
-    <Ionicons
-      name={focused ? `ios-${type}` : `ios-${type}-outline`}
-      size={26}
-      style={{ color: tintColor }}
-    />
-  )
-}
-const stackNavOptions = {
-  navigationOptions: ({ navigation }) => ({
-    headerTintColor: Color.PRIMARY,
-    headerStyle: {
-      backgroundColor: Color.WHITE
-    },
-    headerBackground: Color.WHITE,
-    title: navigation.state.params ? navigation.state.params.title : null
-  }),
-  cardStyle: {
-    backgroundColor: Color.BACKGROUND
-  }
+  return <AntDesign name={type} size={26} style={{ color: tintColor }} />
 }
 const sharedRoutes = {
   Following,
@@ -45,45 +27,51 @@ const sharedRoutes = {
   Repositories,
   Repository,
   Settings,
-  Stars
+  Stars,
 }
 const HomeStack = createStackNavigator(
   {
     Home,
-    ...sharedRoutes
+    ...sharedRoutes,
   },
   {
-    ...stackNavOptions
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Color.PRIMARY,
+        borderBottomColor: Color.BORDER_GRAY,
+      },
+      headerTintColor: Color.WHITE,
+    },
   }
 )
 const SearchStack = createStackNavigator(
   {
     Search,
-    ...sharedRoutes
+    ...sharedRoutes,
   },
   {
-    ...stackNavOptions
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: Color.PRIMARY,
+        borderBottomColor: Color.BORDER_GRAY,
+      },
+      headerTintColor: Color.WHITE,
+    },
   }
 )
 const ProfileStack = createStackNavigator(
   {
     Profile,
-    ...sharedRoutes
+    ...sharedRoutes,
   },
   {
-    initialRouteName: 'Profile',
-    navigationOptions: ({ navigation }) => ({
-      headerTintColor: Color.PRIMARY,
+    defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: Color.WHITE
+        backgroundColor: Color.PRIMARY,
+        borderBottomColor: Color.BORDER_GRAY,
       },
-      headerBackground: Color.WHITE,
-      title: navigation.state.params ? navigation.state.params.title : null,
-      headerBackTitle: null
-    }),
-    cardStyle: {
-      backgroundColor: Color.BACKGROUND
-    }
+      headerTintColor: Color.WHITE,
+    },
   }
 )
 
@@ -92,46 +80,48 @@ const GHModern = createBottomTabNavigator(
     HomeRoutes: {
       screen: HomeStack,
       path: '/',
-      navigationOptions: {
-        swipeEnabled: true,
+      navigationOptions: ({ navigation }) => ({
         title: 'Home',
-        tabBarLabel: 'Home',
         tabBarIcon: ({ tintColor, focused }) =>
-          tabIconHelper(tintColor, focused, 'home')
-      }
+          tabIconHelper(tintColor, focused, 'home'),
+      }),
     },
     SearchRoutes: {
       screen: SearchStack,
       path: '/search',
-      navigationOptions: {
-        swipeEnabled: true,
-        tabBarLabel: 'Search',
+      navigationOptions: ({ navigation }) => ({
+        title: 'Search',
         tabBarIcon: ({ tintColor, focused }) =>
-          tabIconHelper(tintColor, focused, 'search')
-      }
+          tabIconHelper(tintColor, focused, 'search1'),
+      }),
     },
     ProfileRoutes: {
       screen: ProfileStack,
       path: '/profile',
-      navigationOptions: {
-        swipeEnabled: true,
+      navigationOptions: ({ navigation }) => ({
         title: 'Profile',
-        tabBarLabel: 'Profile',
         tabBarIcon: ({ tintColor, focused }) =>
-          tabIconHelper(tintColor, focused, 'person')
-      }
-    }
+          tabIconHelper(tintColor, focused, 'user'),
+      }),
+    },
   },
   {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused }) => {
+        if (!focused) {
+          return <Text>un focused</Text>
+        }
+        return <Text>focused</Text>
+      },
+    }),
     tabBarOptions: {
       activeTintColor: Color.PRIMARY,
       allowFontScaling: false,
       style: {
-        backgroundColor: Color.WHITE
-      }
+        borderTopColor: Color.BORDER_GRAY,
+      },
     },
-    tabBarPosition: 'bottom',
-    initialRouteName: 'ProfileRoutes'
+    initialRouteName: 'SearchRoutes',
   }
 )
 

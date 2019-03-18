@@ -11,7 +11,7 @@ import UserProfile from '../../common/UserProfile'
 import { Color, Layout } from '../../../constants'
 
 export default class Profile extends Component {
-  static navigationOptions ({ navigation }) {
+  static navigationOptions({ navigation }) {
     return {
       title: 'Profile',
       headerRight: (
@@ -22,12 +22,12 @@ export default class Profile extends Component {
             navigation.navigate('Settings')
           }}
         >
-          <SettingsFillIcon width={16} height={16} color={Color.PRIMARY} />
+          <SettingsFillIcon width={16} height={16} color={Color.WHITE} />
         </Touchable>
-      )
+      ),
     }
   }
-  render () {
+  render() {
     const query = viewer
 
     return (
@@ -50,5 +50,5 @@ export default class Profile extends Component {
 }
 
 Profile.propTypes = {
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
 }

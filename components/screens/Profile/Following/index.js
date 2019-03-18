@@ -8,30 +8,31 @@ import Loading from '../../../common/Loading'
 import UserList from '../../../common/UserList'
 
 function propsToVariables(props) {
-  const last = get(props, 'navigation.state.params.following')
+  // TODO: add pagination logic
+  const number_of_following = get(props, 'navigation.state.params.following')
   const login = get(props, 'navigation.state.params.login')
 
   return {
     login,
-    last
+    number_of_following: 99,
   }
 }
 
 function skipQuery(props) {
-  const last = get(props, 'navigation.state.params.following')
+  const number_of_following = get(props, 'navigation.state.params.following')
   const login = get(props, 'navigation.state.params.login')
 
-  return !last || !login
+  return !number_of_following || !login
 }
 
 class Following extends Component {
   static navigationOptions() {
     return {
-      title: 'Following'
+      title: 'Following',
     }
   }
   state = {
-    refreshing: false
+    refreshing: false,
   }
   onRefresh = () => {
     if (this.state.refreshing) {

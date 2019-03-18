@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { Alert, Image, Linking, Platform, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import get from 'lodash.get'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { AntDesign } from '@expo/vector-icons'
 import MetricLabel from '../MetricLabel'
 import Section from './Section'
 import styles from './style'
 
-function openMap (location) {
+function openMap(location) {
   if (location) {
     let mapUrl =
       Platform.OS === 'ios'
@@ -21,12 +21,12 @@ function openMap (location) {
 }
 
 export default class UserProfile extends Component {
-  navigate (route, param) {
+  navigate(route, param) {
     this.props.navigation.navigate(route, {
-      ...param
+      ...param,
     })
   }
-  render () {
+  render() {
     const { user } = this.props
     const followers = get(user, 'followers.totalCount')
     const following = get(user, 'following.totalCount')
@@ -38,7 +38,7 @@ export default class UserProfile extends Component {
         renderLabel: () => {
           return (
             <View style={{ flexDirection: 'row' }}>
-              <Ionicons name='ios-people' size={26} style={styles.icon} />
+              <AntDesign name="team" size={26} style={styles.icon} />
               <View>
                 <Text>Company</Text>
                 <Text style={[styles.smallText, styles.lightText]}>
@@ -47,14 +47,14 @@ export default class UserProfile extends Component {
               </View>
             </View>
           )
-        }
+        },
       },
       {
         leftIcon: null,
         renderLabel: () => {
           return (
             <View style={{ flexDirection: 'row' }}>
-              <Ionicons name='ios-map' size={26} style={styles.icon} />
+              <AntDesign name="find" size={26} style={styles.icon} />
               <View>
                 <Text>Location</Text>
                 <Text style={[styles.smallText, styles.lightText]}>
@@ -66,14 +66,14 @@ export default class UserProfile extends Component {
         },
         onPress: () => {
           openMap(user.location)
-        }
+        },
       },
       {
         leftIcon: null,
         renderLabel: () => {
           return (
             <View style={{ flexDirection: 'row' }}>
-              <Ionicons name='ios-mail' size={26} style={styles.icon} />
+              <AntDesign name="mail" size={26} style={styles.icon} />
               <View>
                 <Text>Email</Text>
                 <Text style={[styles.smallText, styles.lightText]}>
@@ -85,14 +85,14 @@ export default class UserProfile extends Component {
         },
         onPress: () => {
           Linking.openURL(`mailto:${user.email}`)
-        }
+        },
       },
       {
         leftIcon: null,
         renderLabel: () => {
           return (
             <View style={{ flexDirection: 'row' }}>
-              <Ionicons name='ios-link' size={26} style={styles.icon} />
+              <AntDesign name="laptop" size={26} style={styles.icon} />
               <View>
                 <Text>Website</Text>
                 <Text style={[styles.smallText, styles.lightText]}>
@@ -104,8 +104,8 @@ export default class UserProfile extends Component {
         },
         onPress: () => {
           Linking.openURL(user.websiteUrl)
-        }
-      }
+        },
+      },
     ]
     // let orgList = []
 
@@ -127,38 +127,38 @@ export default class UserProfile extends Component {
               <View style={styles.bottomLinks}>
                 <MetricLabel
                   metric={repositories}
-                  label='Repositories'
+                  label="Repositories"
                   onPress={() => {
                     this.navigate('Repositories', {
                       repositories,
-                      login: user.login
+                      login: user.login,
                     })
                   }}
                 />
                 <MetricLabel
                   metric={stars}
-                  label='Stars'
+                  label="Stars"
                   onPress={() => {
                     this.navigate('Stars', { stars, login: user.login })
                   }}
                 />
                 <MetricLabel
                   metric={followers}
-                  label='Followers'
+                  label="Followers"
                   onPress={() => {
                     this.navigate('Followers', { followers, login: user.login })
                   }}
                 />
                 <MetricLabel
                   metric={following}
-                  label='Following'
+                  label="Following"
                   onPress={() => {
                     this.navigate('Following', { following, login: user.login })
                   }}
                 />
               </View>
             </View>
-            <Section title='Info' listItems={infoList} />
+            <Section title="Info" listItems={infoList} />
           </View>
         </View>
       </View>
@@ -168,5 +168,5 @@ export default class UserProfile extends Component {
 
 UserProfile.propTypes = {
   user: PropTypes.object,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
 }

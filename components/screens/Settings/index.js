@@ -6,63 +6,73 @@ import { RightChevron } from '@vivintsolar-oss/native-vs-icons'
 import styles from './styles'
 import { Color } from '../../../constants'
 import { logout } from '../../../services'
+import { CustomHeaderButtons, Item } from '../../common/Header/HeaderButton'
 
-function renderIcon () {
+function renderIcon() {
   return <RightChevron color={Color.PRIMARY} height={16} width={16} />
 }
 class Settings extends Component {
-  static navigationOptions () {
+  static navigationOptions = ({ navigation }) => {
     return {
-      title: 'Settings'
+      title: 'Settings',
+      headerLeft: (
+        <CustomHeaderButtons>
+          <Item
+            title="go back"
+            iconName="left"
+            onPress={() => navigation.goBack()}
+          />
+        </CustomHeaderButtons>
+      ),
     }
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.logout = this.logout.bind(this)
     this.state = {}
   }
-  async logout () {
+  async logout() {
     await logout()
     const reRoute = await this.props.navigation.navigate('Account')
 
     return reRoute
   }
-  render () {
+  render() {
     const settingsList = [
       {
         label: 'Account Settings',
         onPress: () => {
           Alert.alert('Account Settings are coming soon...')
-        }
+        },
       },
       {
         label: 'Notifications',
         onPress: () => {
           Alert.alert('Notification Settings are coming soon...')
         },
-        type: 'lastItem'
-      }
+        type: 'lastItem',
+      },
     ]
     const helpList = [
       {
         label: 'Invite friends',
         onPress: () => {
           Alert.alert('Invite friends links are coming soon...')
-        }
+        },
       },
       {
         label: 'Get Help',
         onPress: () => {
           Alert.alert('Get Help descriptions are coming soon...')
-        }
+        },
       },
       {
         label: 'Give us feedback',
         onPress: () => {
           Alert.alert('Feedback page is coming soon...')
         },
-        type: 'lastItem'
-      }
+        type: 'lastItem',
+      },
     ]
     const destructiveList = [
       {
@@ -75,14 +85,14 @@ class Settings extends Component {
             'Are you sure?',
             [
               { text: 'Cancel', style: 'cancel' },
-              { text: 'Log Out', onPress: this.logout }
+              { text: 'Log Out', onPress: this.logout },
             ],
             { cancelable: true }
           )
         },
         rightIcon: null,
-        leftIcon: null
-      }
+        leftIcon: null,
+      },
     ]
     return (
       <View style={styles.container}>

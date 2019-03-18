@@ -8,34 +8,35 @@ import Loading from '../../../common/Loading'
 import RepoList from '../../../common/RepoList'
 
 function propsToVariables(props) {
-  const last = get(props, 'navigation.state.params.stars')
+  // TODO: add pagination logic
+  const number_of_stars = get(props, 'navigation.state.params.stars')
   const login = get(props, 'navigation.state.params.login')
 
   return {
     login,
-    last,
+    number_of_stars: 99,
     orderBy: {
       direction: 'DESC',
-      field: 'STARRED_AT'
-    }
+      field: 'STARRED_AT',
+    },
   }
 }
 
 function skipQuery(props) {
-  const last = get(props, 'navigation.state.params.stars')
+  const number_of_stars = get(props, 'navigation.state.params.stars')
   const login = get(props, 'navigation.state.params.login')
 
-  return !last || !login
+  return !number_of_stars || !login
 }
 
 class Stars extends Component {
   static navigationOptions() {
     return {
-      title: 'Stars'
+      title: 'Stars',
     }
   }
   state = {
-    refreshing: false
+    refreshing: false,
   }
   onRefresh = () => {
     if (this.state.refreshing) {

@@ -1,17 +1,26 @@
 const mainTheme = {
-  PRIMARY: '#EE6C4D',
-  SECONDARY: '#F7C59F',
-  INVERSE: '#E1E5EE',
-  DEFAULT: '#3D5A80',
-  BACKGROUND: '#E1E5EE',
-  BACKGROUND_ACCENT: '#C7CCDB',
-  BACKGROUND_GRAY: '#E1E5EE',
-  BORDER_GRAY: '#C7CCDB',
-  LIGHT_GRAY: '#3D5A80',
-  LIGHTER_GRAY: '#E1E5EE',
-  BLACK: '#293241',
+  PRIMARY: '#8D13FE',
+  PRIMARY_800: '#46007E',
+  SECONDARY: '#9e6100',
+  TERTIARY: '#0a75c2',
+  ACCENT_PRIMARY: '#8c65b3',
+  ACCENT_SECONDARY: '#ffeccd',
+  ACCENT_TERTIARY: '#dcfffd',
+  INVERSE: '#FBF9FF',
+  DEFAULT: '#0000005c',
+  BACKGROUND: '#fffffff9',
+  BACKGROUND_ACCENT: '#B3B7EE',
+  BACKGROUND_GRAY: '#fffffff9',
+  BORDER_GRAY: '#f5f3f7',
+  GRAY_500: '#0000005c',
+  GRAY_200: '#f5f3f7',
+  GRAY_100: '#fbfafc',
+  BLACK: '#000000a6',
+  ORANGE: '#ffb238',
+  CYAN: '#73fff7',
+  YELLOW: '#ffdf37',
   ERROR: '#E74C3C',
-  WHITE: '#ffffff'
+  WHITE: '#ffffff',
 }
 
 export const mainThemeReplicate = {
@@ -27,7 +36,7 @@ export const mainThemeReplicate = {
   LIGHTER_GRAY: '#E1E5EE',
   BLACK: '#2A324B',
   ERROR: '#E74C3C',
-  WHITE: '#ffffff'
+  WHITE: '#ffffff',
 }
 
 export const experimental = {
@@ -43,7 +52,7 @@ export const experimental = {
   LIGHTER_GRAY: '#E1E5EE',
   BLACK: '#2A324B',
   ERROR: '#E74C3C',
-  WHITE: '#ffffff'
+  WHITE: '#ffffff',
 }
 
 export default mainTheme

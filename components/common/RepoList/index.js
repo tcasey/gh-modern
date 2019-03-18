@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Text, View } from 'react-native'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import { List, ListItem } from '@vivintsolar-oss/native-vs-list'
 import get from 'lodash.get'
 import styles from './style'
 import { Layout } from '../../../constants'
 
-function label (item) {
+function label(item) {
   const primaryLanguage = get(item, 'primaryLanguage.name')
   const languageColor = get(item, 'primaryLanguage.color')
   const stars = get(item, 'stargazers.totalCount')
@@ -17,17 +17,17 @@ function label (item) {
       <View style={styles.nameWrapper}>
         <Text style={styles.name}>{item.name}</Text>
         {item.isPrivate && (
-          <Ionicons name='ios-lock' size={16} style={styles.icon} />
+          <Ionicons name="ios-lock" size={16} style={styles.icon} />
         )}
       </View>
       <Text style={styles.description}>{item.description}</Text>
       <View style={styles.row}>
         <View style={styles.row}>
-          <Ionicons name='ios-star' size={16} style={styles.icon} />
+          <Ionicons name="ios-star" size={16} style={styles.icon} />
           <Text style={styles.gap}>{stars}</Text>
         </View>
         <View style={styles.row}>
-          <Ionicons name='ios-git-network' size={16} style={styles.icon} />
+          <Ionicons name="ios-git-network" size={16} style={styles.icon} />
           <Text style={styles.gap}>{item.forkCount}</Text>
         </View>
         <View style={styles.row}>
@@ -38,7 +38,7 @@ function label (item) {
                 width: 16,
                 borderRadius: 16,
                 backgroundColor: languageColor,
-                marginHorizontal: Layout.ICON_GAP
+                marginHorizontal: Layout.ICON_GAP,
               }}
             />
             <Text>{primaryLanguage}</Text>
@@ -49,7 +49,7 @@ function label (item) {
   )
 }
 
-export default function RepoList (props) {
+export default function RepoList(props) {
   const { data, navigation } = props
 
   if (!data) {
@@ -76,7 +76,7 @@ export default function RepoList (props) {
                 navigation.navigate('Repository', {
                   name: item.name,
                   title: item.name,
-                  owner
+                  owner,
                 })
               }}
             />
@@ -89,5 +89,5 @@ export default function RepoList (props) {
 
 RepoList.propTypes = {
   data: PropTypes.array.isRequired,
-  navigation: PropTypes.object
+  navigation: PropTypes.object,
 }

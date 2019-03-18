@@ -6,14 +6,14 @@ import CustomButton from '../common/Button'
 import { Color, Layout } from '../../constants'
 
 class Account extends Component {
-  async componentDidMount () {
+  async componentDidMount() {
     const accessToken = await secureGet('access_token', null)
     if (accessToken) {
-      this.props.navigation.navigate('App')
+      // this.props.navigation.navigate('App')
     }
   }
 
-  async authenticate () {
+  async authenticate() {
     try {
       await ghAuthorize()
 
@@ -23,7 +23,7 @@ class Account extends Component {
       console.log(err)
     }
   }
-  render () {
+  render() {
     return (
       <View style={styles.container}>
         <View>
@@ -32,7 +32,7 @@ class Account extends Component {
             The only github client you'll ever need
           </Text>
         </View>
-        <CustomButton onPress={() => this.authenticate()} text='Sign In' />
+        <CustomButton onPress={() => this.authenticate()} text="Sign In" />
       </View>
     )
   }
@@ -44,16 +44,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     paddingHorizontal: Layout.EDGE_PADDING * 2,
-    backgroundColor: Color.BACKGROUND
+    backgroundColor: Color.BACKGROUND,
   },
   title: {
     textAlign: 'center',
     fontSize: Layout.TITLE,
-    paddingBottom: 80
+    paddingBottom: 80,
   },
   text: {
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 })
 
 export default withNavigation(Account)

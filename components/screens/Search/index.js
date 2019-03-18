@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from 'react-native'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
 import Touchable from '@vivintsolar-oss/native-vs-touchable'
-import SearchLayout from 'react-navigation-addon-search-layout'
+import SearchLayout from '../../common/SearchBar'
 import get from 'lodash.get'
 import searchRepository from './repository.query'
 import searchUser from './user.query'
@@ -14,35 +14,36 @@ import UserList from '../../common/UserList'
 import RepoList from '../../common/RepoList'
 import Loading from '../../common/Loading'
 
-function propsToVariables (props, state) {
+function propsToVariables(props, state) {
+  console.log('props', props, 'state', state)
   const last = 100
   const type = state.active.toUpperCase()
-  const query = state.query
+  const query = state.searchText
 
   return {
     type,
     last,
-    query
+    query,
   }
 }
 
 export default class Search extends Component {
-  static navigationOptions ({ navigation }) {
+  static navigationOptions({ navigation }) {
     return {
       headerStyle: {
-        display: 'none'
-      }
+        display: 'none',
+      },
     }
   }
 
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.handleQueryChange = this.handleQueryChange.bind(this)
     this.state = {
-      active: 'Repository'
+      active: 'Repository',
     }
   }
-  static getDerivedStateFromProps (props, state) {
+  static getDerivedStateFromProps(props, state) {
     const searchTerm = get(props, 'navigation.state.params.topic', null)
 
     if (searchTerm) {
@@ -52,19 +53,19 @@ export default class Search extends Component {
     return null
   }
 
-  toggleActive (active) {
+  toggleActive(active) {
     this.setState({ active })
   }
 
-  handleQueryChange (searchText) {
+  handleQueryChange(searchText) {
     this.setState({ searchText })
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     this.setState({ searchTerm: null })
   }
 
-  render () {
+  render() {
     const { active, searchTerm } = this.state
     const query = active === 'Repository' ? searchRepository : searchUser
     const ListComponent = active === 'Repository' ? RepoList : UserList
@@ -87,12 +88,16 @@ export default class Search extends Component {
 
     return (
       <SearchLayout
-        headerBackgroundColor={Color.WHITE}
-        headerTintColor={Color.DEFAULT}
-        searchInputUnderlineColorAndroid={Color.WHITE}
-        searchInputSelectionColor={Color.BACKGROUND}
-        searchInputTextColor={Color.DEFAULT}
-        placeholderTextColor={Color.LIGHTER_GRAY}
+        headerBackgroundColor={Color.PRIMARY}
+        headerTintColor={Color.WHITE}
+        searchInputTintColor={Color.WHITE}
+        searchInputUnderlineColorAndroid={Color.ACCENT_PRIMARY}
+        searchInputSelectionColor={Color.ACCENT_PRIMARY}
+        searchInputBackgroundColor={Color.PRIMARY_800}
+        searchInputPlaceholderTextColor={Color.WHITE}
+        searchInputIconColor={Color.WHITE}
+        searchInputTextColor={Color.WHITE}
+        placeholderTextColor={Color.WHITE}
         onChangeQuery={this.handleQueryChange}
         renderResults={q => (
           <ScrollView>
@@ -102,16 +107,22 @@ export default class Search extends Component {
             </View>
             {q || searchTerm ? ( // skip isn't quite working as the loading props still gets passed down
               <Query
-                displayName='Search'
+                displayName="Search"
                 query={query}
                 variables={propsToVariables(this.props, {
                   ...this.state,
-                  query: searchTerm
+                  query: searchTerm,
                 })}
               >
                 {({ loading, error, data }) => {
                   const search = get(data, 'search.nodes')
-                  if (loading) return <Loading />
+                  if (loading)
+                    return (
+                      <View style={styles.noDataWrapper}>
+                        <Loading />
+                      </View>
+                    )
+
                   if (error) return <Text>Error :(</Text>
 
                   return (

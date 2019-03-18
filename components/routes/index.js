@@ -1,13 +1,15 @@
-import { createSwitchNavigator } from 'react-navigation'
+import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 import Account from './account'
 import App from './appScreens'
 
-export default createSwitchNavigator(
-  {
-    Account,
-    App
-  },
-  {
-    initialRouteName: 'Account'
-  }
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      Account,
+      App,
+    },
+    {
+      initialRouteName: 'Account',
+    }
+  )
 )

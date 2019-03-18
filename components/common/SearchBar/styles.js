@@ -10,15 +10,15 @@ const styles = StyleSheet.create({
     marginBottom: Layout.EDGE_PADDING,
     padding: Layout.ICON_GAP,
     paddingLeft: 40,
-    borderColor: Color.BACKGROUND,
-    backgroundColor: Color.BACKGROUND
+    borderColor: 'red',
+    backgroundColor: 'blue',
   },
   icon: {
     position: 'absolute',
     top: Layout.ICON_GAP,
     left: Layout.ICON_GAP,
-    color: Color.DEFAULT
-  }
+    color: Color.DEFAULT,
+  },
 })
 
 export default styles

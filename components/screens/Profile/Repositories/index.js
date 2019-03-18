@@ -8,16 +8,17 @@ import Loading from '../../../common/Loading'
 import RepoList from '../../../common/RepoList'
 
 function propsToVariables(props) {
-  const last = get(props, 'navigation.state.params.repositories')
+  // TODO: add pagination logic
+  const number_of_repos = get(props, 'navigation.state.params.repositories')
   const login = get(props, 'navigation.state.params.login')
 
   return {
     login,
-    last,
+    number_of_repos: 99,
     orderBy: {
       direction: 'DESC',
-      field: 'UPDATED_AT'
-    }
+      field: 'UPDATED_AT',
+    },
   }
 }
 
@@ -31,11 +32,11 @@ function skipQuery(props) {
 class Repositories extends Component {
   static navigationOptions() {
     return {
-      title: 'Repositories'
+      title: 'Repositories',
     }
   }
   state = {
-    refreshing: false
+    refreshing: false,
   }
   onRefresh = () => {
     if (this.state.refreshing) {

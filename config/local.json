@@ -8,5 +8,15 @@
     "redirectUri": "exp://localhost:19000",
     "clientSecret": "8c13558e2ae892ffd8d9005b226f9dfd037838fb",
     "clientId": "d689ac5b6e91b2c4206f"
+  },
+  "nikeapp": {
+    "host": "exp://localhost:19000",
+    "storageKey": "accessToken"
+  },
+  "nikegithub": {
+    "authUrl": "https://github.nike.com/login/oauth/access_token",
+    "redirectUri": "exp://localhost:19000",
+    "clientSecret": "9f91cbc95d3e2aee451b44ef925e3de0a53c7012",
+    "clientId": "4bae7053289cd3288d41"
   }
 }
